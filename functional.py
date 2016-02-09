@@ -1,11 +1,12 @@
-from selenium import webdriver
-import unittest
 import time
+import unittest
 
+from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.keys import Keys
 
 
+# @docs http://selenium-python.readthedocs.org/api.html#module-selenium.webdriver.chrome.webdriver
+# inspired by http://codeception.com/docs/modules/WebDriver
 class SeleniumTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -59,9 +60,9 @@ class SeleniumTestCase(unittest.TestCase):
         field = self._jq(css)
         field.send_keys(content)
 
-    def submitForm(self, css: str):
+    def submitForm(self, css: str = 'form'):
         field = self._jq(css)
-        field.send_keys(Keys.ENTER)
+        field.submit()
 
     def seeInField(self, css: str, content: str):
         field = self._jq(css)
