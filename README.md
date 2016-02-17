@@ -25,8 +25,7 @@ import unittest
 
 class NewVisitorTest(SeleniumTestCase):
 
-    def test_google_can_find_me(self):
-        I = self
+    def test_google_can_find_me(I):
         I.amOnUrl('https://google.pl')
         I.fillField('input[type="text"]', 'SeleniumTestCase')
         I.submitForm()
