@@ -60,19 +60,25 @@ class SeleniumTestCase(unittest.TestCase):
         field = self._jq(css)
         field.send_keys(content)
 
+    def selectOption(self, css: str, text: str):
+        field = self._jq(css)
+        for option in field.find_elements_by_tag_name('option'):
+            if option.text == text:
+                option.click()
+                return
+        raise NoSuchElementException('Element '+css+' has no option '+text)
+
     def submitForm(self, css: str = 'form'):
         field = self._jq(css)
         field.submit()
 
     def seeInField(self, css: str, content: str):
         field = self._jq(css)
-        self.assertTrue(content, field.get_attribute('value'))
+        self.assertEquals(content, field.get_attribute('value'))
 
     def dontSeeInField(self, css: str, content: str):
         field = self._jq(css)
-        self.assertFalse(content, field.get_attribute('value'))
+        self.assertNotEquals(content, field.get_attribute('value'))
 
     def refreshPage(self):
         self.browser.refresh()
-
-
