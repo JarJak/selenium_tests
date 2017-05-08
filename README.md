@@ -43,3 +43,8 @@ python example_test.py
 ```
 
 If no Error will be thrown - test pass!
+
+Todo
+----
+
+ - concurrency tests
